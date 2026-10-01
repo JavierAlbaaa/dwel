@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 2</title>
+</head>
+<body>
+
+    <h1>Cambio de imágenes con JavaScript</h1>
+
+    <img id="diasoleado"
+         onclick="cambiaPic()"
+         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzL8d_0Cs1Ugitabg380QHISsi908rbFHV5liddse1lA&s=10"
+         width="500"
+         height="500">
+
+    <p>Haz click sobre la imagen para cambiarla</p>
+
+    <script>
+
+        var numero = 1;
+
+        function cambiaPic() {
+
+            var image = document.getElementById("diasoleado");
+
+            if (numero == 1) {
+
+                image.src = "https://static.canalsur.es/clip/0476af2d-f011-4f58-ba15-9ab7f5a4de04_source-aspect-ratio_1600w_0.jpg";
+                numero = 2;
+
+            } else if (numero == 2) {
+
+                image.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzlmzEaFHAZlK_rYZDM20jcewBYLZBZgt8lkM68pwkfaTt3x9TnXSW43c&s=10";
+                numero = 3;
+
+            } else if (numero == 3) {
+
+                image.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT359KVt9DtzB3k3rZBYm0xXGYiCZ47JFvclhr0mp5Oog&s=10";
+                numero = 4;
+
+            } else {
+
+                image.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzL8d_0Cs1Ugitabg380QHISsi908rbFHV5liddse1lA&s=10";
+                numero = 1;
+
+            }
+        }
+
+    </script>
+
+</body>
+</html>
