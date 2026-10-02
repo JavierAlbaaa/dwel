@@ -1,64 +1,1167 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi página web</title>
+<title>Javier Alba | Desarrollo Web</title>
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f4f4f4;
-            color: #333;
-            text-align: center;
+<meta name="description" content="Página de ejercicios de desarrollo web de Javier Alba">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    :root {
+        --fondo: #050816;
+        --fondo-secundario: #090d21;
+        --azul: #00d9ff;
+        --azul-oscuro: #0066ff;
+        --morado: #8b5cf6;
+        --verde: #00ff9d;
+        --blanco: #f5f7ff;
+        --gris: #8992b0;
+        --tarjeta: rgba(13, 19, 43, 0.75);
+        --borde: rgba(0, 217, 255, 0.18);
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        min-height: 100vh;
+        color: var(--blanco);
+        font-family: "Inter", sans-serif;
+
+        background:
+            radial-gradient(
+                circle at 15% 15%,
+                rgba(0, 217, 255, 0.10),
+                transparent 28%
+            ),
+            radial-gradient(
+                circle at 85% 25%,
+                rgba(139, 92, 246, 0.12),
+                transparent 30%
+            ),
+            radial-gradient(
+                circle at 50% 100%,
+                rgba(0, 102, 255, 0.10),
+                transparent 35%
+            ),
+            var(--fondo);
+
+        overflow-x: hidden;
+    }
+
+    /* =========================
+       FONDO
+    ========================= */
+
+    .grid {
+        position: fixed;
+        inset: 0;
+        z-index: -5;
+
+        opacity: 0.22;
+
+        background-image:
+            linear-gradient(
+                rgba(0, 217, 255, 0.08) 1px,
+                transparent 1px
+            ),
+            linear-gradient(
+                90deg,
+                rgba(0, 217, 255, 0.08) 1px,
+                transparent 1px
+            );
+
+        background-size: 55px 55px;
+
+        mask-image:
+            linear-gradient(
+                to bottom,
+                black,
+                transparent 90%
+            );
+    }
+
+    .orb {
+        position: fixed;
+        border-radius: 50%;
+        filter: blur(90px);
+        z-index: -4;
+        pointer-events: none;
+    }
+
+    .orb-1 {
+        width: 300px;
+        height: 300px;
+        background: rgba(0, 217, 255, 0.10);
+
+        top: 10%;
+        left: -120px;
+
+        animation: flotar1 8s ease-in-out infinite;
+    }
+
+    .orb-2 {
+        width: 350px;
+        height: 350px;
+        background: rgba(139, 92, 246, 0.10);
+
+        right: -140px;
+        top: 45%;
+
+        animation: flotar2 10s ease-in-out infinite;
+    }
+
+    @keyframes flotar1 {
+
+        0%,
+        100% {
+            transform: translateY(0);
         }
 
-        header {
-            background: #24292f;
-            color: white;
-            padding: 60px 20px;
+        50% {
+            transform: translateY(-40px);
+        }
+    }
+
+    @keyframes flotar2 {
+
+        0%,
+        100% {
+            transform: translateY(0);
         }
 
-        h1 {
-            font-size: 42px;
-            margin-bottom: 10px;
+        50% {
+            transform: translateY(50px);
+        }
+    }
+
+    /* =========================
+       NAV
+    ========================= */
+
+    nav {
+        width: 100%;
+
+        padding: 25px 7%;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        position: relative;
+        z-index: 10;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        font-family: "Orbitron", sans-serif;
+
+        font-weight: 700;
+        letter-spacing: 1px;
+    }
+
+    .logo-icon {
+        width: 40px;
+        height: 40px;
+
+        border: 1px solid var(--azul);
+
+        border-radius: 10px;
+
+        display: grid;
+        place-items: center;
+
+        color: var(--azul);
+
+        box-shadow:
+            0 0 20px rgba(0, 217, 255, 0.15);
+    }
+
+    .estado {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+
+        color: var(--gris);
+
+        font-size: 12px;
+        letter-spacing: 1px;
+    }
+
+    .punto {
+        width: 8px;
+        height: 8px;
+
+        background: var(--verde);
+
+        border-radius: 50%;
+
+        box-shadow:
+            0 0 12px var(--verde);
+
+        animation: pulso 1.5s infinite;
+    }
+
+    @keyframes pulso {
+
+        0% {
+            opacity: 1;
+            transform: scale(1);
         }
 
-        main {
-            padding: 40px 20px;
+        50% {
+            opacity: 0.35;
+            transform: scale(0.75);
         }
 
-        .boton {
-            display: inline-block;
-            padding: 12px 24px;
-            background: #0969da;
-            color: white;
-            text-decoration: none;
-            border-radius: 6px;
-            margin-top: 20px;
+        100% {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+        max-width: 1100px;
+
+        margin: 65px auto 90px;
+
+        padding: 0 25px;
+
+        text-align: center;
+    }
+
+    .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+
+        padding: 9px 17px;
+
+        border: 1px solid rgba(0, 217, 255, 0.25);
+
+        background: rgba(0, 217, 255, 0.06);
+
+        border-radius: 100px;
+
+        color: var(--azul);
+
+        font-size: 12px;
+        font-weight: 700;
+
+        letter-spacing: 1.5px;
+
+        text-transform: uppercase;
+
+        margin-bottom: 28px;
+    }
+
+    .hero h1 {
+        font-family: "Orbitron", sans-serif;
+
+        font-size: clamp(42px, 8vw, 82px);
+
+        line-height: 1.05;
+
+        letter-spacing: -3px;
+
+        margin-bottom: 25px;
+    }
+
+    .degradado {
+        background:
+            linear-gradient(
+                100deg,
+                #ffffff 10%,
+                #00d9ff 45%,
+                #8b5cf6 90%
+            );
+
+        -webkit-background-clip: text;
+        background-clip: text;
+
+        color: transparent;
+    }
+
+    .hero p {
+        max-width: 650px;
+
+        margin: auto;
+
+        color: var(--gris);
+
+        font-size: 17px;
+
+        line-height: 1.8;
+    }
+
+    .scroll {
+        margin-top: 35px;
+
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+
+        color: #65708e;
+
+        font-size: 11px;
+
+        text-transform: uppercase;
+
+        letter-spacing: 2px;
+    }
+
+    /* =========================
+       CONTENIDO
+    ========================= */
+
+    main {
+        width: min(1050px, 90%);
+
+        margin: auto;
+
+        padding-bottom: 100px;
+    }
+
+    .titulo-seccion {
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: end;
+
+        margin-bottom: 25px;
+
+        gap: 20px;
+    }
+
+    .titulo-seccion h2 {
+        font-family: "Orbitron", sans-serif;
+
+        font-size: 25px;
+    }
+
+    .titulo-seccion p {
+        color: var(--gris);
+
+        font-size: 13px;
+
+        margin-top: 8px;
+    }
+
+    .contador {
+        padding: 9px 14px;
+
+        border: 1px solid var(--borde);
+
+        border-radius: 8px;
+
+        color: var(--azul);
+
+        font-size: 12px;
+
+        font-weight: 700;
+
+        background: rgba(0, 217, 255, 0.04);
+
+        white-space: nowrap;
+    }
+
+    /* =========================
+       EJERCICIOS
+    ========================= */
+
+    #archivos {
+        display: grid;
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 17px;
+    }
+
+    .archivo {
+        position: relative;
+
+        overflow: hidden;
+
+        padding: 24px;
+
+        border: 1px solid var(--borde);
+
+        border-radius: 17px;
+
+        background: var(--tarjeta);
+
+        backdrop-filter: blur(15px);
+
+        transition:
+            transform 0.3s ease,
+            border-color 0.3s ease,
+            box-shadow 0.3s ease;
+
+        animation:
+            aparecer 0.5s ease both;
+    }
+
+    .archivo::before {
+        content: "";
+
+        position: absolute;
+
+        width: 180px;
+        height: 180px;
+
+        background:
+            rgba(0, 217, 255, 0.06);
+
+        border-radius: 50%;
+
+        filter: blur(50px);
+
+        right: -90px;
+        top: -90px;
+
+        pointer-events: none;
+    }
+
+    .archivo:hover {
+        transform: translateY(-6px);
+
+        border-color:
+            rgba(0, 217, 255, 0.55);
+
+        box-shadow:
+            0 15px 45px rgba(0, 0, 0, 0.25),
+            0 0 30px rgba(0, 217, 255, 0.07);
+    }
+
+    @keyframes aparecer {
+
+        from {
+            opacity: 0;
+
+            transform:
+                translateY(20px);
         }
 
-        .boton:hover {
-            background: #0555ae;
+        to {
+            opacity: 1;
+
+            transform:
+                translateY(0);
         }
-    </style>
-</head>
+    }
 
-<body>
+    .archivo-top {
+        display: flex;
 
-    <header>
-        <h1>¡Hola! Soy Javier Alba</h1>
-        <p>Bienvenido a mi página web</p>
-    </header>
+        justify-content: space-between;
 
-    <main>
-        <h2>Mi sitio web</h2>
-        <p>Esta página está creada con HTML y publicada con GitHub Pages.</p>
+        align-items: center;
 
-        <a href="#" class="boton">Mi botón</a>
-    </main>
+        margin-bottom: 23px;
+    }
 
-</body>
-</html>
+    .numero {
+        width: 46px;
+        height: 46px;
 
+        border-radius: 12px;
+
+        display: grid;
+
+        place-items: center;
+
+        font-family: "Orbitron", sans-serif;
+
+        font-weight: 700;
+
+        font-size: 14px;
+
+        color: var(--azul);
+
+        border:
+            1px solid rgba(
+                0,
+                217,
+                255,
+                0.25
+            );
+
+        background:
+            rgba(
+                0,
+                217,
+                255,
+                0.06
+            );
+    }
+
+    .codigo {
+        font-family: monospace;
+
+        color: #4f5a79;
+
+        font-size: 11px;
+    }
+
+    .nombre {
+        font-family: "Orbitron", sans-serif;
+
+        font-size: 17px;
+
+        font-weight: 600;
+
+        margin-bottom: 8px;
+
+        word-break: break-word;
+    }
+
+    .descripcion {
+        color: var(--gris);
+
+        font-size: 13px;
+
+        margin-bottom: 22px;
+    }
+
+    .acciones {
+        display: flex;
+
+        gap: 9px;
+    }
+
+    .boton {
+        flex: 1;
+
+        text-align: center;
+
+        text-decoration: none;
+
+        padding: 11px 14px;
+
+        border-radius: 9px;
+
+        font-size: 12px;
+
+        font-weight: 700;
+
+        transition: 0.2s ease;
+    }
+
+    .abrir {
+        color: #00141a;
+
+        background: var(--azul);
+
+        box-shadow:
+            0 0 20px
+            rgba(0, 217, 255, 0.12);
+    }
+
+    .abrir:hover {
+        background: white;
+
+        box-shadow:
+            0 0 25px
+            rgba(0, 217, 255, 0.3);
+    }
+
+    .github {
+        color: #c8cee0;
+
+        background:
+            rgba(
+                255,
+                255,
+                255,
+                0.05
+            );
+
+        border:
+            1px solid
+            rgba(
+                255,
+                255,
+                255,
+                0.08
+            );
+    }
+
+    .github:hover {
+        background:
+            rgba(
+                255,
+                255,
+                255,
+                0.10
+            );
+
+        color: white;
+    }
+
+    /* =========================
+       LOADING
+    ========================= */
+
+    .cargando {
+        grid-column: 1 / -1;
+
+        text-align: center;
+
+        padding: 70px 20px;
+
+        color: var(--gris);
+    }
+
+    .loader {
+        width: 36px;
+        height: 36px;
+
+        border: 3px solid
+            rgba(
+                0,
+                217,
+                255,
+                0.15
+            );
+
+        border-top-color:
+            var(--azul);
+
+        border-radius: 50%;
+
+        animation:
+            girar 0.8s linear infinite;
+
+        margin:
+            0 auto 18px;
+    }
+
+    @keyframes girar {
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    .error {
+        grid-column: 1 / -1;
+
+        padding: 25px;
+
+        border-radius: 12px;
+
+        text-align: center;
+
+        color: #ff8d9a;
+
+        background:
+            rgba(
+                255,
+                50,
+                80,
+                0.06
+            );
+
+        border:
+            1px solid
+            rgba(
+                255,
+                50,
+                80,
+                0.15
+            );
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+        border-top:
+            1px solid
+            rgba(
+                255,
+                255,
+                255,
+                0.06
+            );
+
+        padding: 28px 20px;
+
+        text-align: center;
+
+        color: #59627b;
+
+        font-size: 12px;
+    }
+
+    footer span {
+        color: var(--azul);
+    }
+
+    /* =========================
+       MÓVIL
+    ========================= */
+
+    @media (max-width: 700px) {
+
+        nav {
+            padding: 20px;
+        }
+
+        .estado {
+            display: none;
+        }
+
+        .hero {
+            margin-top: 45px;
+
+            margin-bottom: 65px;
+        }
+
+        .hero h1 {
+            letter-spacing: -2px;
+        }
+
+        #archivos {
+            grid-template-columns: 1fr;
+        }
+
+        .titulo-seccion {
+            align-items: flex-start;
+
+            flex-direction: column;
+        }
+    }
+
+</style>
+
+</head> <body>
+<!-- FONDO -->
+
+<div class="grid"></div>
+
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+
+<!-- NAVEGACIÓN -->
+
+<nav>
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            &lt;/&gt;
+        </div>
+
+        <span>
+            JAVIER ALBA
+        </span>
+
+    </div>
+
+    <div class="estado">
+
+        <span class="punto"></span>
+
+        REPOSITORIO ONLINE
+
+    </div>
+
+</nav>
+
+<!-- PRESENTACIÓN -->
+
+<section class="hero">
+
+    <div class="badge">
+
+        <span>✦</span>
+
+        DESARROLLO WEB
+
+    </div>
+
+    <h1>
+
+        Hola, soy
+
+        <br>
+
+        <span class="degradado">
+            Javier Alba
+        </span>
+
+    </h1>
+
+    <p>
+
+        Bienvenido a mi espacio de ejercicios
+        de desarrollo web.
+
+        <br>
+
+        Aquí encontrarás mis trabajos,
+        prácticas y ejercicios realizados
+        durante mi aprendizaje.
+
+    </p>
+
+    <div class="scroll">
+
+        ↓
+
+        EXPLORA MIS EJERCICIOS
+
+    </div>
+
+</section>
+
+<!-- EJERCICIOS -->
+
+<main>
+
+    <div class="titulo-seccion">
+
+        <div>
+
+            <h2>
+                Mis ejercicios
+            </h2>
+
+            <p>
+                Ejercicios realizados
+            </p>
+
+        </div>
+
+        <div
+            class="contador"
+            id="contador"
+        >
+            CARGANDO...
+        </div>
+
+    </div>
+
+    <div id="archivos">
+
+        <div class="cargando">
+
+            <div class="loader"></div>
+
+            Conectando con GitHub...
+
+        </div>
+
+    </div>
+
+</main>
+
+<!-- FOOTER -->
+
+<footer>
+
+    Diseñado y desarrollado por
+
+    <span>
+        Javier Alba
+    </span>
+
+    · GitHub Pages
+
+</footer>
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script>
+
+    /*
+     * DATOS DEL REPOSITORIO
+     */
+
+    const usuario =
+        "JavierAlbaaa";
+
+    const repositorio =
+        "dwel";
+
+    const url =
+        `https://api.github.com/repos/${usuario}/${repositorio}/contents/`;
+
+    const contenedor =
+        document.getElementById("archivos");
+
+    const contador =
+        document.getElementById("contador");
+
+    /*
+     * CARGAR EJERCICIOS
+     */
+
+    async function cargarEjercicios() {
+
+        try {
+
+            const respuesta =
+                await fetch(url);
+
+            if (!respuesta.ok) {
+
+                throw new Error(
+                    "No se pudo acceder al repositorio."
+                );
+
+            }
+
+            const archivos =
+                await respuesta.json();
+
+            /*
+             * BUSCAR AUTOMÁTICAMENTE
+             *
+             * Ejercicio1.html
+             * Ejercicio2.html
+             * Ejercicio3.html
+             * Ejercicio4.html
+             * Ejercicio5.html
+             * Ejercicio6.html
+             *
+             * etc.
+             */
+
+            const ejercicios =
+                archivos
+
+                    .filter(archivo =>
+
+                        archivo.type === "file" &&
+
+                        /^Ejercicio\d+\.html$/i
+                            .test(archivo.name)
+
+                    )
+
+                    .sort((a, b) => {
+
+                        const numeroA =
+                            parseInt(
+                                a.name.match(/\d+/)[0]
+                            );
+
+                        const numeroB =
+                            parseInt(
+                                b.name.match(/\d+/)[0]
+                            );
+
+                        return numeroA - numeroB;
+
+                    });
+
+            /*
+             * ACTUALIZAR CONTADOR
+             */
+
+            contador.textContent =
+                `${ejercicios.length} EJERCICIOS`;
+
+            /*
+             * SI NO HAY EJERCICIOS
+             */
+
+            if (ejercicios.length === 0) {
+
+                contenedor.innerHTML = `
+
+                    <div class="cargando">
+
+                        Todavía no hay
+                        ejercicios disponibles.
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+            /*
+             * LIMPIAR LOADING
+             */
+
+            contenedor.innerHTML = "";
+
+            /*
+             * CREAR TARJETAS
+             */
+
+            ejercicios.forEach(
+                (archivo, indice) => {
+
+                /*
+                 * OBTENER NÚMERO
+                 */
+
+                const numero =
+                    archivo.name
+                        .match(/\d+/)[0];
+
+                /*
+                 * CREAR TARJETA
+                 */
+
+                const elemento =
+                    document.createElement(
+                        "article"
+                    );
+
+                elemento.className =
+                    "archivo";
+
+                elemento.style.animationDelay =
+                    `${indice * 0.08}s`;
+
+                /*
+                 * CONTENIDO
+                 */
+
+                elemento.innerHTML = `
+
+                    <div class="archivo-top">
+
+                        <div class="numero">
+
+                            ${numero.padStart(
+                                2,
+                                "0"
+                            )}
+
+                        </div>
+
+                        <div class="codigo">
+
+                            HTML / WEB
+
+                        </div>
+
+                    </div>
+
+                    <div class="nombre">
+
+                        ${archivo.name}
+
+                    </div>
+
+                    <div class="descripcion">
+
+                        Ejercicio de
+                        desarrollo web
+
+                    </div>
+
+                    <div class="acciones">
+
+                        <a
+
+                            class="boton abrir"
+
+                            href="${archivo.name}"
+
+                            target="_blank"
+
+                            rel="noopener noreferrer"
+
+                        >
+
+                            ABRIR EJERCICIO
+
+                        </a>
+
+                        <a
+
+                            class="boton github"
+
+                            href="${archivo.html_url}"
+
+                            target="_blank"
+
+                            rel="noopener noreferrer"
+
+                        >
+
+                            GITHUB
+
+                        </a>
+
+                    </div>
+
+                `;
+
+                /*
+                 * AÑADIR A LA PÁGINA
+                 */
+
+                contenedor.appendChild(
+                    elemento
+                );
+
+            });
+
+        }
+
+        catch (error) {
+
+            console.error(error);
+
+            contador.textContent =
+                "ERROR";
+
+            contenedor.innerHTML = `
+
+                <div class="error">
+
+                    ⚠️ No se pudieron
+                    cargar los ejercicios.
+
+                    <br><br>
+
+                    Comprueba que el repositorio
+                    sea público y que GitHub Pages
+                    esté correctamente configurado.
+
+                </div>
+
+            `;
+
+        }
+
+    }
+
+    /*
+     * INICIAR
+     */
+
+    cargarEjercicios();
+
+</script>
