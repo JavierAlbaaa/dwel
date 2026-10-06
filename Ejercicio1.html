@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1>Prueba de Métodos de Salida en JavaScript</h1>
+
+    <p>Contenido previo...</p>
+
+
+    <button type="button" onclick="window.alert('Esto es una alerta')">
+            <p id="prueba1">1. Ventana alerta</p>
+        </button>
+
+    <button type="button" onclick="console.log('Este es el mensaje en consola')">
+        <p id="prueba2">2. Mensaje en Consola</p>
+    </button>
+
+    <button type="button" onclick="document.getElementById('prueba').innerHTML = 'Cambiado el contenido'">
+        <p id="prueba">3. Modificar DOM (innerHTML)</p>
+    </button>
+
+    <button type="button" onclick="document.write('¿Que tal estas?')">
+        <p id="prueba4">4. Document Write</p>
+    </button>
+
+
+</body>
+
+</html>

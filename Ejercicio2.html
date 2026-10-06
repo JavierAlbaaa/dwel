@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=º, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1 id="titutolo1">Titulo Original</h1>
+
+    <p id="texto">Contenido del parrafo</p>
+
+
+
+   <button 
+    type="button" 
+    onclick="
+        document.getElementById('texto').innerHTML = 'El contenido del parrafo ha sido actualizado';
+        document.getElementById('titulo1').innerHTML = 'Titulo Modificado';
+    ">
+    Cambiar texto
+</button>
+
+<button 
+    type="button" 
+    onclick="document.getElementById('texto').style.color = 'red'">
+    Cambiar Estilos CSS
+</button>
+</body>
+
+</html>
