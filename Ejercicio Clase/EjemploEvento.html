@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo Evento</title>
+</head>
+<body>
+
+  <h2>Eventos con addEventListener</h2>
+
+  <!-- ========================================== -->
+  <!-- EVENTOS DE RATÓN                           -->
+  <!-- ========================================== -->
+
+  <!-- Ratón 1: click -->
+  <button id="btnClic">1. Hacer clic aquí</button>
+
+  <br><br>
+
+  <!-- Ratón 2: mouseover -->
+  <div id="caja" style="background: #e2e8f0; padding: 10px; width: 250px;">
+    2. Pasa el ratón por encima de esta caja
+  </div>
+
+  <hr>
+
+  <!-- ========================================== -->
+  <!-- EVENTOS DE TEXTO / TECLADO                 -->
+  <!-- ========================================== -->
+
+  <!-- Texto 1: input (se activa mientras el usuario escribe) -->
+  <label>3. Escribe tu nombre (input):</label><br>
+  <input type="text" id="inputNombre">
+
+  <br><br>
+
+  <!-- Texto 2: keyup (se activa al soltar una tecla) -->
+  <label>4. Escribe un texto (keyup):</label><br>
+  <input type="text" id="inputTexto">
+
+  <!-- Salida de texto en pantalla -->
+  <p id="salida"></p>
+
+  <script>
+    var salida = document.getElementById("salida");
+
+    // Funciones asociadas a los eventos de ratón
+    function alHacerClic() {
+      salida.innerText = "¡Has hecho clic en el botón!";
+    }
+
+    function alPasarElRaton(caja) {
+      caja.innerText = "¡El ratón está sobre la caja!";
+    }
+
+    // Funciones asociadas a los eventos de texto
+    function alEscribirTexto(valor) {
+      salida.innerText = "Nombre en tiempo real: " + valor;
+    }
+
+    function alSoltarTecla(valor) {
+      console.log("Número de caracteres (Consola F12): " + valor.length);
+    }
+
+    // ==========================================
+    // LISTENERS
+    // ==========================================
+    document.getElementById("btnClic").addEventListener("click", alHacerClic);
+
+    var caja = document.getElementById("caja");
+    caja.addEventListener("mouseover", function () {
+      alPasarElRaton(caja);
+    });
+
+    var inputNombre = document.getElementById("inputNombre");
+    inputNombre.addEventListener("input", function () {
+      alEscribirTexto(inputNombre.value);
+    });
+
+    var inputTexto = document.getElementById("inputTexto");
+    inputTexto.addEventListener("keyup", function () {
+      alSoltarTecla(inputTexto.value);
+    });
+  </script>
+
+</body>
+</html>
