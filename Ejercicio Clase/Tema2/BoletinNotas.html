@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boletin Notas</title>
+    <style>
+        fieldset {
+            width: 940px;
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        table {
+            margin: 0 auto;
+            width: 900px;
+        }
+
+        th {
+            background-color: #bfd3e4;
+        }
+
+        th,
+        td {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Boletin de notas de la clase</h2>
+
+    <fieldset>
+        <p style="font-weight: bold;">Notas por trimestre</p>
+
+        <table border="1" cellpadding="6" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Alumno</th>
+                    <th>1T</th>
+                    <th>2T</th>
+                    <th>3T</th>
+                    <th>Media</th>
+                    <th>Calificación</th>
+                </tr>
+            </thead>
+            <tbody id="cuerpo">
+                <tr>
+                    <td>Ana </td>
+                    <td>7</td>
+                    <td>8</td>
+                    <td>9</td>
+                    <td>8</td>
+                    <td>Notable</td>
+                </tr>
+                <tr>
+                    <td>Luis </td>
+                    <td>4</td>
+                    <td>5</td>
+                    <td>6</td>
+                    <td>5</td>
+                    <td>Suficiente</td>
+                </tr>
+                <tr>
+                    <td>Marta </td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>Insuficiente</td>
+                </tr>
+                <tr>
+                    <td>Pablo </td>
+                    <td>9</td>
+                    <td>10</td>
+                    <td>9</td>
+                    <td>9.33</td>
+                    <td>Sobresaliente</td>
+                </tr>
+                <tr>
+                    <td>Espe </td>
+                    <td>9</td>
+                    <td>10</td>
+                    <td>9</td>
+                    <td>9.33</td>
+                    <td>Sobresaliente</td>
+                </tr>
+            </tbody>
+        </table>
+    </fieldset>
+
+    <script>
+        var filas = document.querySelectorAll("tbody tr");
+
+        for (var i = 0; i < filas.length; i++) {
+            for (var j = 1; j <= 3; j++) {
+                var nota = parseFloat(filas[i].cells[j].textContent);
+
+                if (nota < 5) {
+                    filas[i].cells[j].style.backgroundColor = "red";
+                } else {
+                    filas[i].cells[j].style.backgroundColor = "green";
+                }
+            }
+        }
+    </script>
+
+
+    <fieldset>
+        <p style="font-weight: bold;">Añadir alumno</p>
+
+        Nombre: <input type="text" id="nombre">
+        1T: <input type="number" id="t1" min="0" max="10">
+        2T: <input type="number" id="t2" min="0" max="10">
+        3T: <input type="number" id="t3" min="0" max="10">
+        <button onclick="anadir()">Añadir</button>
+
+        <p id="mensaje"></p>
+        <button onclick="volver()">Volver a los datos iniciales</button>
+    </fieldset>
+
+    <script>
+        function anadir() {
+            var nombre = document.getElementById("nombre").value;
+            var t1 = parseFloat(document.getElementById("t1").value);
+            var t2 = parseFloat(document.getElementById("t2").value);
+            var t3 = parseFloat(document.getElementById("t3").value);
+
+            var media = Math.round((t1 + t2 + t3) / 3 * 100) / 100;
+
+            var calificacion;
+            if (media < 5) {
+                calificacion = "Insuficiente";
+            } else if (media < 6) {
+                calificacion = "Suficiente";
+            } else if (media < 7) {
+                calificacion = "Bien";
+            } else if (media < 9) {
+                calificacion = "Notable";
+            } else {
+                calificacion = "Sobresaliente";
+            }
+
+            var fila = document.getElementById("cuerpo").insertRow();
+
+            fila.insertCell().textContent = nombre;
+            fila.insertCell().textContent = t1;
+            fila.insertCell().textContent = t2;
+            fila.insertCell().textContent = t3;
+            fila.insertCell().textContent = media;
+            fila.insertCell().textContent = calificacion;
+
+            for (var j = 1; j <= 3; j++) {
+                var nota = parseFloat(fila.cells[j].textContent);
+
+                if (nota < 5) {
+                    fila.cells[j].style.backgroundColor = "red";
+                } else {
+                    fila.cells[j].style.backgroundColor = "green";
+                }
+            }
+
+            document.getElementById("mensaje").textContent = "Añadido: " + nombre;
+
+
+        }
+
+        function volver() {
+            location.reload();
+        }
+    </script>
+
+
+</body>
+
+</html>
