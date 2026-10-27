@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 id="reloj"></h1>
+    <button onclick="parar()">Parar</button>
+    <button onclick="reanudar()">Reanudar</button>
+    <script>
+        let id;
+
+        function mostrar() {
+            document.getElementById("reloj").textContent = new Date().toLocaleTimeString("es-ES");
+        }
+
+        function reanudar() {
+            clearInterval(id); // esto es para evitar crear varios intervalos si se pulsa reaunudar varias veces
+            mostrar();
+            id = setInterval(mostrar, 1000);
+        }
+
+        function parar() {
+            clearInterval(id);
+        }
+
+        reanudar();
+    </script>
+</body>
+
+</html>
