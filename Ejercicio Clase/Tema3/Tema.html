@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 id="tema">Tema actual: claro</h1>
+
+    <button onclick="cambiarTema()">
+        Cambiar tema
+        <script>
+            // esto es para recuperar el tema guardado
+            let tema = localStorage.getItem("tema");
+
+            if (tema === null) {
+                tema = "claro";
+            }
+
+            // mostrar el tema al cargar la página
+            document.getElementById("tema").textContent =
+                "Tema actual: " + tema;
+
+            function cambiarTema() {
+                if (tema === "claro") {
+                    tema = "oscuro";
+                } else {
+                    tema = "claro";
+                }
+
+                // para guardar en localStorage
+                localStorage.setItem("tema", tema);
+
+                // mostrar el tema actualizado
+                document.getElementById("tema").textContent =
+                    "Tema actual: " + tema;
+            }
+        </script>
+</body>
+
+</html>

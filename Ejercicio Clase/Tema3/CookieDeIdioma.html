@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        function leerCookie(nombre) {
+            let cookies = document.cookie.split("; ");
+
+            for (let cookie of cookies) {
+                let [clave, valor] = cookie.split("=");
+
+                if (clave === nombre) {
+                    return valor;
+                }
+            }
+
+            return null;
+        }
+
+        // para crear la cookie por 7 días
+        document.cookie = "idioma=es; max-age=604800; path=/";
+
+        //  esto para leer la cookie
+        console.log(leerCookie("idioma"));
+
+        // para borrar la cookie
+        document.cookie = "idioma=; max-age=0; path=/";
+
+        // para ver que se ha borrado
+        console.log(leerCookie("idioma"));
+
+    </script>
+</body>
+
+</html>

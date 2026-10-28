@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Lista de tareas</h1>
+
+    <input id="texto">
+    <button onclick="anadirTarea()">Añadir</button>
+
+    <ul id="lista"></ul>
+
+    <script>
+        function anadirTarea() {
+
+            // esto recupera las tareas guardadas o crea un array vacío
+            let tareas = JSON.parse(localStorage.getItem("tareas")) || [];
+
+            // para añadir al array el texto escrito en el input
+            tareas.push(document.getElementById("texto").value);
+
+            // lo guarda en el array en localStorage
+            localStorage.setItem("tareas", JSON.stringify(tareas));
+
+            
+            verTareas();
+        }
+
+    
+        function verTareas() {
+
+            // recuperar las tareas guardadas
+            let tareas = JSON.parse(localStorage.getItem("tareas")) || [];
+
+            // para limpiar  la lista antes de volver a mostrarla
+            document.getElementById("lista").innerHTML = "";
+
+            // Recorre lsa tareas y la muestra
+            for (let tarea of tareas) {
+                document.getElementById("lista").innerHTML += "<li>" + tarea + "</li>";
+            }
+        }
+
+
+        verTareas();
+    </script>
+</body>
+
+</html>
