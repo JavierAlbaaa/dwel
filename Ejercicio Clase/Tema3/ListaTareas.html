@@ -24,7 +24,7 @@
             // para añadir al array el texto escrito en el input
             tareas.push(document.getElementById("texto").value);
 
-            // lo guarda en el array en localStorage
+            // lo guarda en localStorage
             localStorage.setItem("tareas", JSON.stringify(tareas));
 
             
@@ -37,10 +37,9 @@
             // recuperar las tareas guardadas
             let tareas = JSON.parse(localStorage.getItem("tareas")) || [];
 
-            // para limpiar  la lista antes de volver a mostrarla
+            // para limpiar
             document.getElementById("lista").innerHTML = "";
 
-            // Recorre lsa tareas y la muestra
             for (let tarea of tareas) {
                 document.getElementById("lista").innerHTML += "<li>" + tarea + "</li>";
             }

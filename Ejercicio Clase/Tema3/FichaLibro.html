@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const libro = {
+            titulo: "Dune",
+            autor: "Frank Herbert",
+            paginas: 688,
+            resumen() {
+                return this.titulo + ", de " + this.autor + " (" + this.paginas + " páginas)";
+            }
+        };
+
+        document.write(libro.resumen() + "<br>");
+
+        for (const clave in libro) {
+            document.write(clave + ": " + libro[clave] + "<br>");
+        }
+    </script>
+</body>
+
+</html>
